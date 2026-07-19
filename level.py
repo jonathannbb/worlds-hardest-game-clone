@@ -19,7 +19,8 @@ class Nivel:
         pygame.draw.line(Screen, (0,0,0), (40,540), (40,38), 5)
         pygame.draw.line(Screen, (0,0,0), (38,540), (740,540), 5)
         pygame.draw.line(Screen, (0,0,0), (740,542), (740,38), 5)
-
+        
+        #punto de partida y punto final.
         pygame.draw.rect(Screen, (0,255,0), self.inicio_rect)
         pygame.draw.rect(Screen, (0,255,0), self.final_rect)
 
