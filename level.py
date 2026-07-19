@@ -3,7 +3,7 @@ import pygame
 conf_game = {
     1:{
         "zona_inicio" : (100, 100, 30, 30),
-        "meta_final" : (500, 500, 30, 30)
+        "meta_final" : (500, 500, 30, 30),
     }
 }
 

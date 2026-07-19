@@ -1,4 +1,6 @@
 import pygame
+
+
 class Jugador:
     def __init__ (self, x, y):
         self.rect = pygame.Rect(x, y, 20,20)
@@ -14,5 +16,6 @@ class Jugador:
             self.rect.y -= self.speed
         if teclas[pygame.K_DOWN]:
             self.rect.y += self.speed
+
     def Draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
