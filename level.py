@@ -4,7 +4,14 @@ conf_game = {
     1:{
         "zona_inicio" : (100, 100, 30, 30),
         "meta_final" : (605, 445, 60, 60),
+        "zona_spawn" : (105,105)
+    },
+    2:{
+        "zona_inicio" : (400, 400, 30, 30),
+        "meta_final" : (100, 100, 60, 60),
+        "zona_spawn" : (405,405)
     }
+
 }
 
 class Nivel:
@@ -12,6 +19,7 @@ class Nivel:
         datos = conf_game[numero_nivel]
         self.inicio_rect = pygame.Rect(datos["zona_inicio"])
         self.final_rect = pygame.Rect(datos["meta_final"])
+        self.spawn = datos["zona_spawn"]
     def draw(self, Screen):
 
         #ventana principal para cada nivel

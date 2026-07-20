@@ -12,23 +12,18 @@ screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 blanco = (255,255,255)
 
-#posicion inicial del jugador, enemigo y que ambos no sobrepasen el limite de la ventana
-SPAWNS_POR_NIVEL = {
-    1: (105, 105),
-    2: (125, 125),
-    3: (400, 300),
-    4: (50, 500)
-}
+
 nivel_actual = 1
-spawn_x, spawn_y = SPAWNS_POR_NIVEL[nivel_actual]
+#objeto que instacia el nivel (escenario)
+level = Nivel(nivel_actual)
+
+spawn_x, spawn_y = level.spawn
 player = Jugador(spawn_x, spawn_y)
 enemigo = Enemigo(375, 265)
 
 #limite aplicado a cada nivel.
 zona_permitida = pygame.Rect(43, 43, 695, 495)
 
-#objeto que instacia el nivel (escenario)
-level = Nivel(nivel_actual)
 
 #Bucle principal para que la ventana no se cierre sola con los diversos elementos del juego
 jugando = True
@@ -42,7 +37,7 @@ while jugando:
                 
         if evento.type == pygame.KEYDOWN:
             if evento.key == pygame.K_r:
-                player.rect.topleft = SPAWNS_POR_NIVEL[nivel_actual]
+                player.rect.topleft = level.spawn
 
     #Coordenadas del jugador, por ahora con el objetivo de saber donde esta ubicado el jugador
     #y asi plantear los niveles con mayor facilidad
@@ -60,7 +55,16 @@ while jugando:
 
     # Si el jugador toca la hitbox del enemigo, vuelve al spawn del nivel actual.
     if player.rect.colliderect(enemigo.rect):
-        player.rect.topleft = SPAWNS_POR_NIVEL[nivel_actual]
+        player.rect.topleft = level.spawn
+        
+    
+    if player.rect.colliderect(level.final_rect):
+        nivel_actual += 1
+        level = Nivel(nivel_actual)
+        spawn_x, spawn_y = level.spawn
+        player.rect.x = spawn_x
+        player.rect.y = spawn_y
+        
 
 
     
