@@ -57,11 +57,19 @@ while jugando:
 
     #aplicando limite para el cuadrado rojo
     player.rect.clamp_ip(zona_permitida)
+
+    # Si el jugador toca la hitbox del enemigo, vuelve al spawn del nivel actual.
+    if player.rect.colliderect(enemigo.rect):
+        player.rect.topleft = SPAWNS_POR_NIVEL[nivel_actual]
+
+
     
     #dibujar en pantalla
     level.draw(screen)
-    player.Draw(screen)
     enemigo.draw(screen)
+    player.Draw(screen)
+    
+    
 
     #aplicando colision al enemigo
     enemigo.update()
