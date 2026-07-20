@@ -4,12 +4,18 @@ conf_game = {
     1:{
         "zona_inicio" : (100, 100, 30, 30),
         "meta_final" : (605, 445, 60, 60),
-        "zona_spawn" : (105,105)
+        "zona_spawn" : (105,105),
+        "paredes" : [(150, 200, 500, 20),   # Pared superior
+            (150, 380, 500, 20),   # Pared inferior
+            (150, 220, 20, 160),]
     },
     2:{
         "zona_inicio" : (400, 400, 30, 30),
         "meta_final" : (100, 100, 60, 60),
-        "zona_spawn" : (405,405)
+        "zona_spawn" : (405,405),
+        "paredes" : [(150, 200, 500, 20),   # Pared superior
+        (150, 380, 500, 20),   # Pared inferior
+        (150, 220, 20, 160),]
     }
 
 }
@@ -20,6 +26,9 @@ class Nivel:
         self.inicio_rect = pygame.Rect(datos["zona_inicio"])
         self.final_rect = pygame.Rect(datos["meta_final"])
         self.spawn = datos["zona_spawn"]
+        self.paredes = []
+        for p in datos["paredes"]:
+            self.paredes.append(pygame.Rect(p))
     def draw(self, Screen):
 
         #ventana principal para cada nivel
@@ -31,5 +40,8 @@ class Nivel:
         #punto de partida y punto final.
         pygame.draw.rect(Screen, (0,255,0), self.inicio_rect)
         pygame.draw.rect(Screen, (0,255,0), self.final_rect)
+        #paredes
+        for pared in self.paredes:
+            pygame.draw.rect(Screen, (0,0,0), pared)
 
 

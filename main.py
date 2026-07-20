@@ -76,7 +76,7 @@ while jugando:
     
 
     #aplicando colision al enemigo
-    enemigo.update()
+    enemigo.update(level.paredes)
 
     pygame.display.flip()
     clock.tick(60)
