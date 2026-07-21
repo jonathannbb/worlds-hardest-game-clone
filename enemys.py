@@ -9,7 +9,6 @@ class Enemigo:
                                 self.radio * 2, self.radio * 2)
         self.color = (0,0,255)
         self.speed = 3
-
     def move(self):
         self.position.x += self.speed
         self.rect.center = self.position
@@ -21,7 +20,6 @@ class Enemigo:
         for pared in paredes:
             if not self.rect.colliderect(pared):
                 continue
-
             # El enemigo sólo se mueve en el eje X, por lo que el rebote se
             # resuelve contra el lado horizontal de la pared que acaba de tocar.
             if self.speed > 0:

@@ -49,15 +49,12 @@ while jugando:
     
     #color a la pantalla
     screen.fill(blanco)
-
-    #aplicando limite para el cuadrado rojo
-    player.rect.clamp_ip(zona_permitida)
-
+    
     # Si el jugador toca la hitbox del enemigo, vuelve al spawn del nivel actual.
     if player.rect.colliderect(enemigo.rect):
         player.rect.topleft = level.spawn
         
-    
+    #verificar si el juh¿gador paso de nivel
     if player.rect.colliderect(level.final_rect):
         nivel_actual += 1
         level = Nivel(nivel_actual)
@@ -65,18 +62,21 @@ while jugando:
         player.rect.x = spawn_x
         player.rect.y = spawn_y
         
-
-
-    
-    #dibujar en pantalla
-    level.draw(screen)
-    enemigo.draw(screen)
-    player.Draw(screen)
-    
     
 
     #aplicando colision al enemigo
     enemigo.update(level.paredes)
+    #aplicando colision al jugador
+    player.update(level.paredes)
+
+    #aplicando limite para el cuadrado rojo
+    player.rect.clamp_ip(zona_permitida)
+
+    #dibujar en pantalla
+    level.draw(screen)
+    enemigo.draw(screen)
+    player.Draw(screen)
+
 
     pygame.display.flip()
     clock.tick(60)
