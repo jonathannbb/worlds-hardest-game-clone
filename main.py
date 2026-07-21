@@ -45,7 +45,7 @@ while jugando:
     
     #movimientos del jugador y enemigos
     player.Move()
-    enemigo.move()
+    
     
     #color a la pantalla
     screen.fill(blanco)
