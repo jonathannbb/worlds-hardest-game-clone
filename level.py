@@ -1,4 +1,5 @@
 import pygame
+from enemys import Enemigo
 
 conf_game = {
     1:{
@@ -7,7 +8,8 @@ conf_game = {
         "zona_spawn" : (105,105),
         "paredes" : [(150, 200, 500, 20),   # Pared superior
             (150, 380, 500, 20),   # Pared inferior
-            (150, 220, 20, 160),]
+            (150, 220, 20, 160),],
+        "enemigos" :[(400,400), (200,200)]
     },
     2:{
         "zona_inicio" : (400, 400, 30, 30),
@@ -15,7 +17,8 @@ conf_game = {
         "zona_spawn" : (405,405),
         "paredes" : [(150, 200, 500, 20),   # Pared superior
         (150, 380, 500, 20),   # Pared inferior
-        (150, 220, 20, 160),]
+        (150, 220, 20, 160),],
+        "enemigos" : [(500,400)]
     }
 
 }
@@ -29,6 +32,12 @@ class Nivel:
         self.paredes = []
         for p in datos["paredes"]:
             self.paredes.append(pygame.Rect(p))
+
+        self.enemigos = []
+        for pos in datos["enemigos"]:
+            nuevo_enemigo = Enemigo(*pos)
+            self.enemigos.append(nuevo_enemigo)
+
     def draw(self, Screen):
 
         #ventana principal para cada nivel
@@ -43,5 +52,13 @@ class Nivel:
         #paredes
         for pared in self.paredes:
             pygame.draw.rect(Screen, (0,0,0), pared)
+        #enemigos
+        for enemigo in self.enemigos:
+            enemigo.draw(Screen)
+
+
+
+        
+
 
 

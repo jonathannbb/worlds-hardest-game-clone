@@ -45,8 +45,5 @@ class Jugador:
                 
                 
 
-            
-        
-
     def Draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)

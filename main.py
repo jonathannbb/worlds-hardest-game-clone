@@ -1,7 +1,6 @@
 import pygame
 from player import Jugador
 from level import Nivel
-from enemys import Enemigo
 
 #Iniciar Pygame
 pygame.init()
@@ -19,7 +18,7 @@ level = Nivel(nivel_actual)
 
 spawn_x, spawn_y = level.spawn
 player = Jugador(spawn_x, spawn_y)
-enemigo = Enemigo(375, 265)
+
 
 #limite aplicado a cada nivel.
 zona_permitida = pygame.Rect(43, 43, 695, 495)
@@ -43,18 +42,19 @@ while jugando:
     #y asi plantear los niveles con mayor facilidad
     pygame.display.set_caption(f"Posición Jugador -> X: {player.rect.x} | Y: {player.rect.y}")
     
-    #movimientos del jugador y enemigos
+    #movimientos del jugador
     player.Move()
-    
     
     #color a la pantalla
     screen.fill(blanco)
     
     # Si el jugador toca la hitbox del enemigo, vuelve al spawn del nivel actual.
-    if player.rect.colliderect(enemigo.rect):
-        player.rect.topleft = level.spawn
+    for enemigo in level.enemigos:
+        if player.rect.colliderect(enemigo.rect):
+            player.rect.topleft = level.spawn
+            break
         
-    #verificar si el juh¿gador paso de nivel
+    #verificar si el jugador paso de nivel
     if player.rect.colliderect(level.final_rect):
         nivel_actual += 1
         level = Nivel(nivel_actual)
@@ -64,8 +64,9 @@ while jugando:
         
     
 
-    #aplicando colision al enemigo
-    enemigo.update(level.paredes)
+    # Actualizar todos los enemigos del nivel actual.
+    for enemigo in level.enemigos:
+        enemigo.update(level.paredes)
     #aplicando colision al jugador
     player.update(level.paredes)
 
@@ -73,8 +74,9 @@ while jugando:
     player.rect.clamp_ip(zona_permitida)
 
     #dibujar en pantalla
+
+    
     level.draw(screen)
-    enemigo.draw(screen)
     player.Draw(screen)
 
 

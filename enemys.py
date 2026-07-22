@@ -29,7 +29,6 @@ class Enemigo:
                 self.position.x = self.rect.centerx
                 self.direction_x *= -1
 
-  
     def draw(self, screen):
          pygame.draw.circle(screen, self.color, self.position, self.radio)
 
