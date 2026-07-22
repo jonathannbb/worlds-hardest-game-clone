@@ -6,7 +6,7 @@ class Jugador:
         
         self.rect = pygame.Rect(x, y, 20,20)
         self.color = (255,0,0)
-        self.speed = 5
+        self.speed = 2
     def Move(self):
         self.direction_x = 0
         self.direction_y = 0
