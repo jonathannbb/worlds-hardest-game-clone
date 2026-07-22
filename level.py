@@ -9,7 +9,7 @@ conf_game = {
         "paredes" : [(150, 200, 500, 20),   # Pared superior
             (150, 380, 500, 20),   # Pared inferior
             (150, 220, 20, 160),],
-        "enemigos" :[(400,400), (200,200)]
+        "enemigos" :[(400,400, 3), (200,200, 10)]
     },
     2:{
         "zona_inicio" : (400, 400, 30, 30),
@@ -18,7 +18,7 @@ conf_game = {
         "paredes" : [(150, 200, 500, 20),   # Pared superior
         (150, 380, 500, 20),   # Pared inferior
         (150, 220, 20, 160),],
-        "enemigos" : [(500,400)]
+        "enemigos" : [(500,400, 5)]
     }
 
 }
@@ -33,7 +33,7 @@ class Nivel:
         for p in datos["paredes"]:
             self.paredes.append(pygame.Rect(p))
 
-        self.enemigos = []
+        self.enemigos = [] #Enemigo (100,100), Enemigo(200,200)
         for pos in datos["enemigos"]:
             nuevo_enemigo = Enemigo(*pos)
             self.enemigos.append(nuevo_enemigo)
@@ -55,6 +55,7 @@ class Nivel:
         #enemigos
         for enemigo in self.enemigos:
             enemigo.draw(Screen)
+
 
 
 

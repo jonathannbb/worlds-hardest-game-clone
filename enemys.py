@@ -2,13 +2,13 @@ import pygame
 
 
 class Enemigo:
-    def __init__(self, x, y):
+    def __init__(self, x, y, velocidad_por_nivel):
         self.position = pygame.Vector2(x, y)
         self.radio = 10
         self.rect = pygame.Rect(x - self.radio, y - self.radio,
                                 self.radio * 2, self.radio * 2)
         self.color = (0,0,255)
-        self.speed = 3
+        self.speed = velocidad_por_nivel
         self.direction_x = self.speed
         self.direction_y = self.speed
 
