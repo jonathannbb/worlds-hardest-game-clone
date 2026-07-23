@@ -2,7 +2,7 @@ import pygame
 
 
 class Enemigo:
-    def __init__(self, x, y, velocidad_por_nivel):
+    def __init__(self, x, y, velocidad_por_nivel, modo_de_movimiento):
         self.position = pygame.Vector2(x, y)
         self.radio = 10
         self.rect = pygame.Rect(x - self.radio, y - self.radio,
@@ -11,8 +11,9 @@ class Enemigo:
         self.speed = velocidad_por_nivel
         self.direction_x = self.speed
         self.direction_y = self.speed
+        self.modo_de_movimiento = modo_de_movimiento
 
-    def update(self, paredes, modo_de_movimiento):
+    def update(self, paredes):
         
         self.rect.centerx = round(self.position.x)
         self.rect.centery = round(self.position.y)
@@ -22,7 +23,7 @@ class Enemigo:
         if self.position.y >= 530 or self.position.y <= 50:
             self.direction_y *= -1
         
-        if modo_de_movimiento == 1:
+        if self.modo_de_movimiento == 1:
             self.position.x += self.direction_x
             for pared in paredes:
                 if self.rect.colliderect(pared):
@@ -34,7 +35,7 @@ class Enemigo:
                     #rebote: Invertimos solo el eje x
                     self.position.x = self.rect.centerx
                     self.direction_x *= -1
-        elif modo_de_movimiento == 2:
+        elif self.modo_de_movimiento == 2:
             self.position.y += self.direction_y
             for pared in paredes:
                 if self.rect.colliderect(pared):

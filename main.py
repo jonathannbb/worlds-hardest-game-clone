@@ -62,7 +62,7 @@ while jugando:
 
     # Actualizar todos los enemigos del nivel actual.
     for enemigo in level.enemigos:
-        enemigo.update(level.paredes, level.movimiento)
+        enemigo.update(level.paredes)
     
     #aplicando colision al jugador
     player.update(level.paredes)
