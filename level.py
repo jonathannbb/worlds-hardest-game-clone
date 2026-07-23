@@ -5,7 +5,7 @@ conf_game = {
     1:{
         "zona_inicio" : (69, 134, 125, 300),
         "meta_final" : (580, 134, 125, 300),
-        "zona_spawn" : (144,275),
+        "zona_spawn" : (122,275),
         "paredes" : [(65, 130, 125, 4),   # Pared superior
             (65, 430, 185, 4),   # Pared inferior
             (65, 130, 4, 300), #pared izquierda
@@ -22,7 +22,8 @@ conf_game = {
             (220,170, 295, 4),
             (220, 170, 4, 230),
             (190,400, 34, 4)], 
-        "enemigos" :[(235,375, 5), (532,335, 5), (235,295, 5), (532,255, 5), (235,215, 5), (532,185, 5)]
+        "enemigos" :[(235,375, 5), (532,335, 5), (235,295, 5), (532,255, 5), (235,215, 5), (532,185, 5)],
+        "modo_movimiento" : (1)
     },
     2:{
         "zona_inicio" : (400, 400, 30, 30),
@@ -31,7 +32,8 @@ conf_game = {
         "paredes" : [(150, 200, 500, 20),   # Pared superior
         (150, 380, 500, 20),   # Pared inferior
         (150, 220, 20, 160),],
-        "enemigos" : [(500,400, 5)]
+        "enemigos" : [(500,400, 5)],
+        "modo_movimiento" : (2)
     }
 
 }
@@ -50,6 +52,8 @@ class Nivel:
         for pos in datos["enemigos"]:
             nuevo_enemigo = Enemigo(*pos)
             self.enemigos.append(nuevo_enemigo)
+
+        self.movimiento = datos["modo_movimiento"]
 
     def draw(self, Screen):
 

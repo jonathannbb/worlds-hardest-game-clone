@@ -62,7 +62,7 @@ while jugando:
 
     # Actualizar todos los enemigos del nivel actual.
     for enemigo in level.enemigos:
-        enemigo.update(level.paredes)
+        enemigo.update(level.paredes, level.movimiento)
     
     #aplicando colision al jugador
     player.update(level.paredes)
@@ -70,7 +70,7 @@ while jugando:
     #aplicando limite para el cuadrado rojo
     player.rect.clamp_ip(zona_permitida)
 
-    #dibujar en pantalla
+    #dibujar en pantalla 
     level.draw(screen)
     player.Draw(screen)
 
